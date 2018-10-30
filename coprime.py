@@ -25,20 +25,19 @@ def __gcd(a, b):
      
 @app.route('/')
 def homepage():
-    return 'Welcome to GetFibo'
+    return 'Welcome to Co-Prime Number Checker'
 
 @ask.launch
 def start_skill():
-    message = 'Hey.. Ask me whether a number is in fibonacci sequence or not?'
-    return question(message)
+    message = 'Hey.. Ask me whether two numbers are Co-Prime or not?'
+    r`eturn question(message)
 
 @ask.intent("NumberIntent",convert = {"first" : int, "second" : int})
 def number_intent(first, second):
     if ( __gcd(first, second) == 1): 
-            return statement("Yes, They are Co-Prime") 
-    else:
-		message = "No, " + str(first) + "and" + str(second) + " are not Co-Prime" 
-		return statement(message)
+        return statement("Yes, They are Co-Prime") 
+    else: 
+		return statement("No, They are Co-Prime")
 
 @ask.intent("NoIntent")
 def no_Intent():
