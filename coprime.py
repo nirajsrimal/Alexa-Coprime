@@ -4,7 +4,7 @@ from flask_ask import Ask, statement, question, session
 import math
 
 app = Flask(__name__)
-ask = Ask(app, '/alexa-coprime')
+ask = Ask(app, '/')
 
 
 def __gcd(a, b): 
@@ -21,7 +21,7 @@ def __gcd(a, b):
               
     return __gcd(a, b - a) 
   
-@app.route('/coprime')
+@app.route('/')
 def homepage():
     return 'Welcome to Coprime Number Checker'
 
