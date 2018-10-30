@@ -21,9 +21,9 @@ def __gcd(a, b):
               
     return __gcd(a, b - a) 
   
-@app.route('/fiboalexa')
+@app.route('/coprime')
 def homepage():
-    return 'Welcome to Fibonacci Number Checker'
+    return 'Welcome to Coprime Number Checker'
 
 @ask.launch
 def start_skill():
