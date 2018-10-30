@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 from flask import Flask
 from flask_ask import Ask, statement, question, session
-import requests
+import math
 
 app = Flask(__name__)
-ask = Ask(app, '/')
+ask = Ask(app, '/fiboalexa')
 
- 
-def gcd_nums(a, b): 
+
+def __gcd(a, b): 
   
     # Everything divides 0  
     if (a == 0 or b == 0): return 0
@@ -17,26 +17,25 @@ def gcd_nums(a, b):
       
     # a is greater 
     if (a > b):  
-        return gcd_nums(a - b, b) 
+        return __gcd(a - b, b) 
               
-    return gcd_nums(a, b - a) 
+    return __gcd(a, b - a) 
   
-     
-@app.route('/')
+@app.route('/fiboalexa')
 def homepage():
-    return 'Welcome to Co-Prime Number Checker'
+    return 'Welcome to Fibonacci Number Checker'
 
 @ask.launch
 def start_skill():
-    message = 'Hey.. Ask me whether two numbers are Co-Prime or not?'
+    message = 'Hi. Ask two number to check if they are coprime'
     return question(message)
 
 @ask.intent("NumberIntent")
-def number_intent(first, second):
-    if ( gcd_nums(first, second) == 1): 
-        return statement("Yes, They are Co-Prime") 
+def team_intent(first, second):
+    if ( __gcd(first, second) == 1): 
+        return statement("Yes")
     else: 
-		return statement("No, They are Co-Prime")
+        return statement("No")
 
 @ask.intent("NoIntent")
 def no_Intent():
@@ -55,7 +54,7 @@ def stop_Intent():
 
 @ask.intent("AMAZON.HelpIntent")
 def help_Intent():
-    message = 'Say a number.'
+    message = 'Say number to check for fibonacci..'
     return question(message)
 
 if __name__ == '__main__':
