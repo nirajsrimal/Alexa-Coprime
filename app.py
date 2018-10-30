@@ -50,7 +50,7 @@ def stop_Intent():
 
 @ask.intent("AMAZON.HelpIntent")
 def help_Intent():
-    message = 'Say a number. A number is said to be a magic number, if the sum of its digits are calculated till a single digit recursively by adding the sum of the digits after every addition. If the single digit comes out to be 1,then the number is a magic number.'
+    message = 'Say two numbers and check whether they are coprime. Two numbers A and B are said to be Co-Prime or mutually prime if the Greatest Common Divisor of them is 1.'
     return question(message)
 
 if __name__ == '__main__':
