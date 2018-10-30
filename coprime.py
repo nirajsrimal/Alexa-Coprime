@@ -31,7 +31,7 @@ def start_skill():
     message = 'Hey.. Ask me whether two numbers are Co-Prime or not?'
     return question(message)
 
-@ask.intent("NumberIntent",convert = {"first" : int, "second" : int})
+@ask.intent("NumberIntent")
 def number_intent(first, second):
     if ( gcd_nums(first, second) == 1): 
         return statement("Yes, They are Co-Prime") 
