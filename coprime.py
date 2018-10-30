@@ -4,7 +4,7 @@ from flask_ask import Ask, statement, question, session
 import math
 
 app = Flask(__name__)
-ask = Ask(app, '/fiboalexa')
+ask = Ask(app, '/alexa-coprime')
 
 
 def __gcd(a, b): 
