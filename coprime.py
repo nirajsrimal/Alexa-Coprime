@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 from flask import Flask
 from flask_ask import Ask, statement, question, session
-import math
 import requests
 
 app = Flask(__name__)
 ask = Ask(app, '/')
 
  
-def __gcd(a, b): 
+def gcd_nums(a, b): 
   
     # Everything divides 0  
     if (a == 0 or b == 0): return 0
@@ -18,9 +17,9 @@ def __gcd(a, b):
       
     # a is greater 
     if (a > b):  
-        return __gcd(a - b, b) 
+        return gcd_nums(a - b, b) 
               
-    return __gcd(a, b - a) 
+    return gcd_nums(a, b - a) 
   
      
 @app.route('/')
@@ -30,11 +29,11 @@ def homepage():
 @ask.launch
 def start_skill():
     message = 'Hey.. Ask me whether two numbers are Co-Prime or not?'
-    r`eturn question(message)
+    return question(message)
 
 @ask.intent("NumberIntent",convert = {"first" : int, "second" : int})
 def number_intent(first, second):
-    if ( __gcd(first, second) == 1): 
+    if ( gcd_nums(first, second) == 1): 
         return statement("Yes, They are Co-Prime") 
     else: 
 		return statement("No, They are Co-Prime")
