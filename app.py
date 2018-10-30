@@ -1,45 +1,41 @@
 #!/usr/bin/env python
 from flask import Flask
 from flask_ask import Ask, statement, question, session
-import math
 import requests
-
-
-# This script relies on Cricinfo RSS Live Feed (http://static.cricinfo.com/rss/livescores.xml)
-
 
 app = Flask(__name__)
 ask = Ask(app, '/')
-
+  
 def __gcd(a, b): 
   
-    # Everything divides 0  
     if (a == 0 or b == 0): return 0
-      
-    # base case 
+
     if (a == b): return a 
-      
-    # a is greater 
+
     if (a > b):  
         return __gcd(a - b, b) 
               
-    return __gcd(a, b - a) 
-     
+    return __gcd(a, b - a)
+
 @app.route('/')
 def homepage():
-    return 'Welcome to Coprime Number Checker'
+    return 'Welcome to Coprime Nmber'
 
 @ask.launch
 def start_skill():
-    message = 'Hey.. Ask me whether a two numbers are coprime or not?'
+    message = 'Hey.. Ask me whether two numbers are  coprime number or not?'
     return question(message)
 
-@ask.intent("NumberIntent",convert = {"num" : int})
+@ask.intent("NumberIntent")
 def number_intent(first, second):
-    if ( __gcd(a, b) == 1):
-        return statement("Yes, It is a Fibonacci Number")
-    else: 
-        return statement("Not coprime")
+    return statement("LOL")
+    '''
+    if ans:
+        return statement("Yes, It is a Magic Number")
+    else:
+        message = "No," + str(num) + " is not a Magic Number" 
+        return statement(message)
+    '''
 
 @ask.intent("NoIntent")
 def no_Intent():
@@ -58,7 +54,7 @@ def stop_Intent():
 
 @ask.intent("AMAZON.HelpIntent")
 def help_Intent():
-    message = 'Say a number.'
+    message = 'Say a number. A number is said to be a magic number, if the sum of its digits are calculated till a single digit recursively by adding the sum of the digits after every addition. If the single digit comes out to be 1,then the number is a magic number.'
     return question(message)
 
 if __name__ == '__main__':
