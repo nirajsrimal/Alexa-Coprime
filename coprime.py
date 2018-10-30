@@ -2,10 +2,14 @@
 from flask import Flask
 from flask_ask import Ask, statement, question, session
 import math
+import requests
+
+
+# This script relies on Cricinfo RSS Live Feed (http://static.cricinfo.com/rss/livescores.xml)
+
 
 app = Flask(__name__)
 ask = Ask(app, '/')
-
 
 def __gcd(a, b): 
   
@@ -20,22 +24,22 @@ def __gcd(a, b):
         return __gcd(a - b, b) 
               
     return __gcd(a, b - a) 
-  
+     
 @app.route('/')
 def homepage():
     return 'Welcome to Coprime Number Checker'
 
 @ask.launch
 def start_skill():
-    message = 'Hi. Ask two number to check if they are coprime'
+    message = 'Hey.. Ask me whether a two numbers are coprime or not?'
     return question(message)
 
-@ask.intent("NumberIntent")
-def team_intent(first, second):
-    if ( __gcd(first, second) == 1): 
-        return statement("Yes")
+@ask.intent("NumberIntent",convert = {"num" : int})
+def number_intent(first, second):
+    if ( __gcd(a, b) == 1):
+        return statement("Yes, It is a Fibonacci Number")
     else: 
-        return statement("No")
+        return statement("Not coprime")
 
 @ask.intent("NoIntent")
 def no_Intent():
@@ -54,7 +58,7 @@ def stop_Intent():
 
 @ask.intent("AMAZON.HelpIntent")
 def help_Intent():
-    message = 'Say number to check for fibonacci..'
+    message = 'Say a number.'
     return question(message)
 
 if __name__ == '__main__':
