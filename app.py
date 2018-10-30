@@ -26,17 +26,13 @@ def start_skill():
     message = 'Hey.. Ask me whether two numbers are  coprime number or not?'
     return question(message)
 
-@ask.intent("NumberIntent")
+@ask.intent("NumberIntent", convert = {"first" : int, "second" : int})
 def number_intent(first, second):
-    return statement("LOL")
-    '''
-    if ans:
-        return statement("Yes, It is a Magic Number")
-    else:
-        message = "No," + str(num) + " is not a Magic Number" 
-        return statement(message)
-    '''
-
+    if (__gcd(first, second) == 1): 
+        return statement("Yes, They are coprime")
+    else: 
+        return statement("No, They are not coprime")
+    
 @ask.intent("NoIntent")
 def no_Intent():
     message = 'Well that is fine...Maybe next time'
